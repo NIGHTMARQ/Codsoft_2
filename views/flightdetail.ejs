@@ -1,0 +1,1020 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="../public/image/favicon.ico">
+<style>
+/* Flight detail */
+html {
+    font-size: 16px; /* Default font size */
+    line-height: 1.5;
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0; /* Background color for the entire page */
+    color: #333; /* Default text color */
+}
+body {
+    width: auto;
+    background-color: #FFA500;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    font-size: 36px;
+    margin: 0;
+    color: #333;
+    text-align: center;
+}
+
+.m-flightInfo {
+    padding-bottom: 16px;
+    background-color: #fff;
+    border-radius: 8px;
+}
+
+.m-flightInfo__header {
+    border-radius: 8px 8px 0 0;
+    background: #fff;
+    padding: 16px 16px 16px 16px;
+    color: #0f294d;
+    position: relative;
+    z-index: 2;
+    text-shadow: none;
+}
+.m-flightInfo__info-wrap {
+    display: flex;
+    height: 30px;
+    justify-content: flex-end;
+}
+.m-flightInfo__info {
+    flex: 1 1;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+.m-flightInfo__cityname {
+    font-size: 40px;
+    font-weight: 600;
+    line-height: 30px;
+}
+.m-flightInfo-item {
+    padding: 16px 16px 0;
+    background: hsla(0,0%,100%,.8);
+}
+.m-flightInfo-item__content {
+    border-radius: 4px;
+    border: 1px solid transparent;
+}
+.m-flightInfo__flightHead {
+    padding: 0;
+    position: relative;
+    background-color: #fff;
+    border-radius: 4px 4px 0 0;
+    box-shadow: 0 4px 8px 0 rgba(69,88,115,0);
+}
+.m-flightInfo .m-flightInfo-item .m-flightinfo__simplehead-wrapper {
+    border: 1px solid transparent;
+}
+.m-flightInfo__flightHead .m-flightinfo__simplehead-wrapper {
+    background-color: #f5f7fa;
+    padding: 8px;
+    border-radius: 4px 4px 0 0;
+}
+.title-info-wrapper {
+    font-size: 12px;
+}
+.mb-16 {
+    margin-bottom: 16px;
+}
+.title-info-wrapper span {
+    display: inline-block;
+}
+.m-flightInfo__flightHead .title-serial {
+    background: #3264ff;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 18px;
+    color: #fff;
+    border-radius: 2px;
+    padding: 2px 4px;
+    display: inline-block;
+    min-width: 15px;
+    text-align: center;
+    margin: 0;
+}
+.title-seperate {
+    background-color: #dadfe6;
+    height: 8px;
+    width: 1px;
+    display: inline-block;
+    margin: 0 4px;
+}
+.flex, .flex-center, .flex-column, .flex-column-center, .h-center, .v-center {
+    display: -webkit-flex;
+    display: flex;
+}
+.flex1 {
+    flex: 1 1 auto;
+}
+.flight-info.is-simple-v2 {
+    display: flex;
+    max-height: 96px;
+    align-items: flex-start;
+}
+.flight-info.is-simple-v2 .flight-info-col.col-1 {
+    flex: 0 0 auto;
+    padding-right: 0;
+}
+.flight-info-airline {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+}
+.flight-info.is-simple-v2 .flight-info-airline__logo {
+    flex: 0 0 40px;
+    width: 40px;
+    height: 40px;
+    align-self: center;
+}
+.flight-info-airline__wrap {
+    display: inline-block;
+    padding: 0 8px;
+}
+.f-column-content, .flex-column, .flex-column-center {
+    flex-direction: column;
+}
+.flight-info.is-simple-v2 .flight-info-airline__wrap {
+    min-height: 40px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+.flight-info-airline.is-v2 .flight-info-airline__flights {
+    flex-direction: column;
+}
+
+.flight-info.is-simple-v2 .flight-info-airline__flights {
+    margin-bottom: 0;
+    width: 150px;
+}
+.flight-info-airline__flights {
+    display: flex;
+    flex-wrap: wrap;
+    width: 190px;
+}
+.flight-info-airline.is-v2 .flight-info-airline__flights .flights-name {
+    color: #455873;
+    width: 100%;
+}
+
+.flight-info.is-simple-v2 .flights-name {
+    margin-right: 0;
+    margin-top: 0;
+}
+.flight-info-airline__flights .flights-name {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    color: #0f294d;
+    margin-top: 4px;
+    margin-right: 8px;
+}
+.flight-info-airline__flights .flights-info {
+    color: #ff6f00;
+    margin-top: 4px;
+}
+.flight-info.is-simple-v2 .flight-info-amenities {
+    display: inline-block;
+    color: #06aebd;
+    position: relative;
+    margin-top: 7px;
+}
+.flight-info.is-simple-v2 .flight-info-col.col-2, .flight-info.is-simple-v2 .flight-info-col.col-3 {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-right: 16px;
+}
+.flight-info-stop__wrapper.is-v2 {
+    display: flex;
+}
+.flight-info-stop__wrapper.is-v2 .flight-info-stop__info-wrapper {
+    position: relative;
+    /* align-items: center; */
+}
+.flight-info-stop__wrapper.is-v2 .flight-info-stop__info-wrapper.is-dep {
+    flex-direction: column;
+    align-items: flex-start;
+    width: 52px;
+}
+.flight-info-airline__timer {
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 24px;
+}
+.flight-info-stop__wrapper.is-v2 .flight-info-stop__code {
+    white-space: nowrap;
+    text-align: center;
+    cursor: auto;
+    font-size: 14px;
+    line-height: 18px;
+    padding: 0 2px;
+}
+.flight-info-stop__wrapper.is-v2 .flight-info-stop__segline-wrapper {
+    flex-direction: column;
+    margin: 0 10px;
+    font-size: 12px;
+    line-height: 18px;
+    align-items: center;
+}
+.flight-info-stop__wrapper.is-v2 .flight-info-stop__segline-wrapper .flight-info-duration {
+    line-height: 18px;
+    font-size: 12px;
+    color: #8592a6;
+    font-weight: 400;
+}
+.flight-info-stop__wrapper.is-v2 .flight-info-stop__segline-wrapper .flight-info-stop_stop-line-wrapper {
+    flex-direction: column;
+}
+.flight-info-stop__wrapper.is-v2 .flight-info-stop__line-wrapper {
+    position: relative;
+    margin-top: 3px;
+    margin-bottom: 3px;
+}
+.flight-info-stop__wrapper.is-v2 .flight-info-stop__line-wrapper .flight-info-stop__dot {
+    height: 6px;
+    width: 6px;
+    background: #dadfe6;
+}
+.flight-info-stop__wrapper.is-v2 .flight-info-stop__line-wrapper .flight-info-stop__stopline-wrapper {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    justify-content: space-between;
+}
+.flight-info-stop__wrapper.is-v2 .flight-info-stop__line-wrapper .flight-info-stop__line {
+    background: #dadfe6;
+    height: 2px;
+    width: 160px;
+}
+.flight-info-stop__wrapper.is-v2 .flight-info-stop__segline-wrapper .flight-info-stop__text {
+    color: #8592a6;
+    font-weight: 400;
+    max-width: 160px;
+    white-space: pre-wrap;
+    text-align: center;
+    line-height: 18px;
+}
+.flight-info-stop__wrapper.is-v2 .flight-info-stop__info-wrapper.is-arr {
+    flex-direction: column;
+    align-items: flex-end;
+    width: 52px;
+}
+.flight-info-stop__wrapper.is-v2 .flight-info-stop__code {
+    white-space: nowrap;
+    text-align: center;
+    cursor: auto;
+    font-size: 14px;
+    line-height: 18px;
+    padding: 0 2px;
+}
+.flight-info-stop__wrapper.is-v2 .flight-info-stop__info-wrapper .flight-info-stop__timer-dayplus {
+    position: absolute;
+    top: 0;
+    right: -15px;
+    color: #ff6f00;
+    font-size: 12px;
+}
+.m-flightInfo__flightDetail {
+    background: hsla(0,0%,100%,.8);
+    padding: 0;
+    border-radius: 0 0 4px 4px;
+}
+.m-flightInfo__flightDetail .f-flight-detail {
+    border-radius: 0 0 4px 4px;
+}
+
+.is-v2 .f-flight-detail {
+    padding: 0 8px 8px;
+    background-color: #f5f7fa;
+}
+.f-flight-detail {
+    border: 0!important;
+    font-size: 14px;
+    line-height: 18px;
+}
+.is-v2 .f-flight-detail__wrap {
+    background-color: #fff;
+    padding: 16px;
+    border-radius: 2px 2px 2px 2px;
+}
+.f-flight-detail__plane-info {
+    color: #8592a6;
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 0;
+    line-height: 18px;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+}
+.mr-10 {
+    margin-right: 10px;
+}
+.f-flight-detail__table {
+    display: flex;
+    margin-left: 0;
+    justify-content: space-between;
+    position: relative;
+}
+.f-flight-detail__airport {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-right: 16px;
+}
+.f-flight-detail__depart.simple-lineHeight {
+    height: 18px;
+    box-sizing: content-box;
+}
+
+.f-flight-detail__brick {
+    position: relative;
+}
+.f-flight-detail__depart {
+    padding-bottom: 8px;
+}
+.f-flight-detail__times {
+    flex: 0 0 auto;
+    width: 106px;
+    text-align: right;
+    font-size: 14px;
+    vertical-align: top;
+    white-space: nowrap;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-right: 230px;
+    line-height: 18px;
+    position: relative;
+}
+.f-flight-detail__times .date {
+    font-size: 12px;
+    line-height: 18px;
+    padding-right: 60px;
+    padding-left: 20px;
+}
+.f-bold {
+    font-weight: 700;
+}
+.f-flight-detail .location-last {
+    border-left: 0;
+    padding-bottom: 0;
+}
+.f-flight-detail__dot {
+    width: 8px;
+    height: 8px;
+    background: #dadfe6;
+    position: absolute;
+    left: -4px;
+    top: 5px;
+    z-index: 9;
+}
+
+i {
+    font-style: normal;
+}
+.f-flight-detail__middle {
+    font-size: 12px;
+    line-height: 18px;
+    padding-right: 16px;
+    text-align: right;
+    box-sizing: border-box;
+    color: #8592a6;
+    position: relative;
+    height: 100%;
+}
+.f-flight-detail__middle .duration {
+    flex: 0 0 90px;
+    display: inline-block;
+    width: 90px;
+    padding-left: 30px;
+    margin: auto 0;
+    box-sizing: content-box;
+}
+.f-flight-detail__brick {
+    position: relative;
+}
+
+.f-flight-detail__arrive {
+    padding-top: 8px;
+    flex: 0 0 auto;
+}
+.f-flight-detail__arrive .f-flight-detail__times {
+    align-self: flex-start;
+}
+/* total css */
+/* Style for the wrapper div */
+.meta-price-panel-info__wrapper {
+    background-color: #f0f0f0;
+    padding: 20px;
+    border: 1px solid #ccc;
+}
+
+/* Style for the header section */
+.m-book-summary-side__header {    
+    position: relative!important;
+    padding: 16px 16px 8px;
+    border-radius: 8px 8px 0 0;
+    background: #fff;
+}
+
+/* Style for the "Total" text */
+.m-book-summary-side__total {
+    font-size: 20px;
+    line-height: 26px;
+}
+
+.m-book-summary-side__brick {
+    display: flex;
+    flex-wrap: wrap;
+    overflow: hidden;
+}
+
+/* Style for the price */
+.m-book-summary-side__price {
+    font-size: 20px;
+    font-weight: bold;
+    color: #ff6600;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex: 1;
+    text-align: right;
+}
+
+.m-book-summary-side__inner {
+    position: relative!important;
+    padding: 0 16px 16px;
+    border-radius: 8px;
+    background: #fff;
+}
+
+.c-summary-common__wrapper{
+    display: block!important;
+}
+
+.mb-16 {
+    margin-bottom: 16px;
+}
+
+.dash-line__bottom-m16:after, .dash-line__top-m16:before {
+    content: "";
+    display: block;
+    width: 100%;
+    border-top: 1px dashed #dadfe6;
+    margin: 16px 0;
+}
+
+.m-book-summary-side .m-baggage-info__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Style for the "Baggage Info" section */
+.m-baggage-info__wrapper {
+    margin-top: 20px;
+}
+
+/* Style for the title of "Baggage Info" */
+.m-baggage-info__header .title {
+    font-size: 20px;
+    color: #0f294d;
+    line-height: 26px;
+    font-weight: 700;
+}
+
+.mt-16 {
+    margin-top: 16px;
+}
+.f-bold {
+    font-weight: 700;
+}
+.name-normal {
+    word-wrap: break-word;
+    font-weight: 400;
+}
+.mr-4 {
+    margin-right: 4px;
+}
+.mr-8 {
+    margin-right: 8px;
+}
+/* Style for the "View Details" link */
+.view-detail {
+    color: #3333cc;
+    cursor: pointer;
+}
+
+/* Style for baggage items */
+.baggage-item {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+}
+.mt-8 {
+    margin-top: 8px;
+}
+.item-left {
+    display: flex;
+    flex: 1;
+}
+
+/* Add more styles as needed */
+
+
+</style>
+<title>Flight Detail</title>
+</head>
+<body>
+  <div class="container">
+    <h1>Flight Detail</h1>
+    <div id="flight-details" class="ticket">
+      <!-- Flight details will be populated here using JavaScript -->
+      <div class="m-flightInfo__pa-header">
+        <div class="m-flightInfo__header">
+            <div class="m-flightInfo__info-wrap">
+                <div class="m-flightInfo__info">
+                    <span class="m-flightInfo__cityname">
+                        <%= detail.departureAirport.city %> 
+                    </span>
+                    <img width="50" height="45" src="https://img.icons8.com/cotton/64/arrows-follow-right.png" alt="arrows-follow-right"/>
+                    <span class="m-flightInfo__cityname">
+                        <%= detail.arrivalAirport.city %>
+                    </span>
+                </div>
+                <a data-testid="changeFlight" class="m-flightInfo__edit-newUI">
+                    <span class="hover-underline">
+                         Flight <%= detail.flight_code %>
+                    </span>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="m-flightInfo-item">
+        <div class="m-flightInfo-item__content is-showmore">
+            <div class="m-flightInfo__flightHead show-up" data-testid="m-flightInfo__flightHead" style="cursor: pointer;">
+                <div class="m-flightinfo__simplehead-wrapper">
+                    <div class="mb-16 title-info-wrapper" data-tracker-id="passenger_flightInfo">
+                        <span class="title-serial">
+                            Depart
+                        </span>
+                        <span class="ml-8 mr-8">
+                             Sep 16 ${D_time}
+                        </span>
+                        <span class="title-seperate"></span>
+                        <span class="ml-8 mr-8">
+                            <%= detail.departureAirport.country.label %> ---- <%= detail.arrivalAirport.country.label %>
+                        </span>
+                    </div>
+                    <div class="flex m-flightinfo__simp-wrapper">
+                        <div class="flex1">
+                            <div>
+                                <div class="flight-info is-simple-v2">
+                                    <div class="flight-info-col col-1 flight-info-airline is-v2">
+                                        <div class="flight-info-airline__wrap flex-column-center">
+                                            <div class="flight-info-airline__flights" data-testid="flight-info-airline__flights" title="">
+                                                <div class="flights-name">
+                                                    <%= detail.flight_name %>
+                                                </div>
+                                                <div class="flights-info"></div>
+                                            </div>
+                                            <span data-testid="flight-info-amenities" class="flight-info-amenities ThemeColor17">
+                                                <i data-testid="comIcon" class="fi-icon fi-icon_charging"></i>
+                                                <i data-testid="comIcon" class="fi-icon fi-icon_dinner_new"></i>
+                                                <i data-testid="comIcon" class="fi-icon fi-icon_show"></i>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="flight-info-col col-2">
+                                        <div class="flight-info-stop__wrapper is-v2">
+                                            <div class="flex flight-info-stop__info-wrapper is-v2">
+                                                <div class="flight-info-stop__info-wrapper flex is-dep">
+                                                    <div class="flight-info-airline__timer departure-time">
+                                                        <span class="time">
+                                                            ${D_time}
+                                                        </span>
+                                                    </div>
+                                                    <span class="flight-info-stop__code" data-testid="flight-info-stop__code" title="">
+                                                        <%= detail.departureAirport.city %>
+                                                    </span>
+                                                </div>
+                                                <div class="flight-info-stop__segline-wrapper v-center">
+                                                    <div class="flight-info-duration">
+                                                        <%= detail.duration.text %>
+                                                    </div>
+                                                    <div class="flight-info-stop_stop-line-wrapper v-center" data-testid="flight-info-stop_stop-line-wrapper" title="">
+                                                        <div class="flex flight-info-stop__line-wrapper h-center v-center">
+                                                            <div class="flight-info-stop__dot"></div>
+                                                            <div class="flight-info-stop__stopline-wrapper flex v-center "></div>
+                                                            <div class="flight-info-stop__line"></div>
+                                                            <div class="flight-info-stop__dot"></div>
+                                                        </div>
+                                                        <span data-testid="stopInfoText" class="flight-info-stop__text">
+                                                            <%= detail.stops %>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                                <div class="flight-info-stop__info-wrapper flex is-arr">
+                                                    <div class="flight-info-airline__timer arrival-time">
+                                                        <span class="time">
+                                                            ${A_time}
+                                                        </span>
+                                                    </div>
+                                                    <span class="flight-info-stop__code" data-testid="flight-info-stop__code" title="">
+                                                        <%= detail.arrivalAirport.city %>
+                                                    </span>
+                                                </div>
+                                                <sup class="flight-info-stop__timer-dayplus">
+                                                    +1
+                                                </sup>
+                                            </div>
+                                            <div class="flight-info-stop__codeWrapper"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="m-flightInfo__flightHead__details">
+                            <i class="m-flightInfo__flightHead__details-icon icon-up fi-icon fi-icon_down_circle"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="m-flightInfo__flightDetail" style="display: block;">
+                <div class="f-flight-detail" data-testid="u_flight_detail_1">
+                    <div class="f-flight-detail__wrap u-clearfix">
+                        <div class="f-flight-detail__content">
+                            <div class="f-flight-detail__plane-info">
+                                <div class="ml-10 mr-10">
+                                    <%= detail.flight_name %>
+                                    <div data-crawl-flight-no="UK016" class="js-craw-information ml-4">
+                                        <%= detail.flight_code %>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="f-flight-detail__table" data-testid="u_flight_sequenceNo_1_0">
+                                <div class="f-flight-detail__airport">
+                                    <div class="f-flight-detail__brick f-flight-detail__depart simple-lineHeight">
+                                        <div class="flex">
+                                            <div class="f-flight-detail__times departure-detail">
+                                                <span class="date ThemeColor8">
+                                                    ${D_date}
+                                                </span>
+                                                <span class="time f-bold">
+                                                    ${D_time}
+                                                </span>
+                                            </div>
+                                            <div class="f-flight-detail__location location-last">
+                                                <i class="f-flight-detail__dot"></i>
+                                                <span>
+                                                    <span data-testid="city-port-name-info">
+                                                        <%= detail.departureAirport.label %>&nbsp;
+                                                    </span>
+                                                    <span class="date color-234">
+                                                        T3
+                                                    </span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="f-flight-detail__middle flex">
+                                        <span class="duration">
+                                            <%= detail.duration.text %>
+                                        </span>
+                                        <div class="">
+                                            <i class=""></i>
+                                        </div>
+                                    </div>
+                                    <div class="f-flight-detail__brick f-flight-detail__arrive hasNextDay-margin">
+                                        <div class="flex">
+                                            <div class="f-flight-detail__times arrival-detail">
+                                                <span class="date ThemeColor12">
+                                                    ${A_date}
+                                                </span>
+                                                <span class="time f-bold">
+                                                    ${A_time}
+                                                </span>
+                                            </div>
+                                            <div class="f-flight-detail__location location-last">
+                                                <i class="f-flight-detail__dot"></i>
+                                                <span>
+                                                    <span data-testid="city-port-name-info">
+                                                        <%=detail.arrivalAirport.label %>&nbsp;
+                                                    </span>
+                                                    <span class="date color-234">
+                                                        T2
+                                                    </span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="f-flight-detail__airline_new" style="min-width: unset;">
+                                    <div class="">
+                                        <%= detail.cabinType %>
+                                    </div>
+                                    <div class="">
+                                        <div>
+                                            Boeing 787-9
+                                        </div>
+                                    </div>
+                                    <span class="flt-comfort__summary " data-testid="flight_comfort_icons">
+                                        <span class="comfort-icon-wrapper">
+                                            <i class="fi-icon fi-icon_dinner_new ThemeColor17"></i>
+                                            <i class="fi-icon fi-icon_charging ThemeColor17"></i>
+                                            <i class="fi-icon fi-icon_show ThemeColor17"></i>
+                                        </span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="meta-price-panel-info__wrapper">
+                <div class="m-book-summary-side__header">
+                    <div class="m-book-summary-side__totalWrapper" data-testid="u_price_panel_total">
+                        <div class="m-book-summary-side__brick">
+                            <div class="m-book-summary-side__total">
+                                <span class="f-18 f-bold">
+                                    Total
+                                </span>
+                            </div>
+                            <div class="m-book-summary-side__price">
+                                <div data-crawl-total-price="169118 INR" class="js-craw-information o-price-flight f-bold f-20">
+                                    <span class="o-price-flight__currency">
+                                        INR
+                                    </span> 
+                                    <em class="o-price-flight__num">
+                                        <%=detail.totals.total.toFixed(2)%>
+                                    </em>
+                                </div>
+                                <i class="fi-icon fi-icon_dropdown_line ThemeColor1"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="m-book-summary-side__inner ps" style="max-height: calc(100vh - 211px);">
+                    <div class="c-summary-common__wrapper">
+                        <div class="c-summary-common__priceDetail showRadius">
+                            <div class="new-price-tip"></div>
+                            
+                            <div class="dash-line__bottom-m16 mt-16 mb-16"></div>
+                        </div>
+                        <div class="m-baggage-info__wrapper">
+                            <div class="m-baggage-info__header">
+                                <div class="title">
+                                    Baggage Info
+                                </div>
+                            </div>
+                            <div class="m-baggage-info__content">
+                                <div class="psg-baggage-item mt-16">
+                                    <div class="title f-bold">
+                                        <span>
+                                            Adult
+                                        </span>
+                                        <span data-hj-suppress="true" class="ml-4 mr-4 name-normal">
+                                            (Passenger 1)
+                                        </span>
+                                    </div>
+                                    <div class="baggage-item mt-8" data-testid="psg_checkedFormatted">
+                                        <div class="item-left">
+                                            <i class="fi-icon fi-icon_baggage_line"></i>
+                                            <div class="mr-4 ml-4">
+                                                Checked Baggage
+                                            </div>
+                                        </div>
+                                        <div class="item-right" style="cursor: pointer;">
+                                            <div class="">
+                                                <span>
+                                                    2 x 23 kg
+                                                </span>
+                                            </div>
+                                            <i class="fi-icon fi-icon_info_line mr-5 ml-5"></i>
+                                        </div>
+                                    </div>
+                                    <div class="baggage-item mt-8" data-testid="psg_handFormatted">
+                                        <div class="item-left">
+                                            <i class="fi-icon fi-icon_luggage"></i>
+                                            <div class="mr-4 ml-4">
+                                                Carry-on Baggage
+                                            </div>
+                                        </div>
+                                        <div class="item-right" style="cursor: pointer;">
+                                            <div class="">
+                                                <span>
+                                                    1 x 8 kg (35*25*55 cm)
+                                                </span>
+                                            </div>
+                                            <i class="fi-icon fi-icon_info_line mr-5 ml-5"></i>
+                                        </div>
+                                    </div>
+                                    <div class="baggage-item mt-8" data-testid="psg_personalItemFormatted">
+                                        <div class="item-left">
+                                            <i class="fi-icon fi-icon-ic_handbag"></i>
+                                            <div class="mr-4 ml-4">
+                                                Personal item
+                                            </div>
+                                        </div>
+                                        <div class="item-right" style="cursor: pointer;">
+                                            <div class="">
+                                                <span>
+                                                    1 piece
+                                                </span>
+                                            </div>
+                                            <i class="fi-icon fi-icon_info_line mr-5 ml-5"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mt-8 f-12 ThemeColor17 flex" data-testid="psg_additionalInfo">
+                                    <i class="fi-icon fi-icon-ic_newly_line"></i>
+                                    <div class="mr-5 ml-5">
+                                        If you need extra baggage allowance, please contact the airline directly or purchase it at the airport
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ps__rail-x" style="left: 0px; bottom: 0px;">
+                        <div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;">
+                        </div>
+                    </div>
+                    <div class="ps__rail-y" style="top: 0px; right: 0px;">
+                        <div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 0px;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button id="confirm-booking" data-detail='<%= JSON.stringify(detail) %>'>Confirm Booking</button>
+    </div>
+  </div>
+  
+  <script>
+    var username = '<%= username.username %>';
+    console.log(username);
+
+    function formatDatetime(datetimeString) {
+      const datetimeParts = datetimeString.split('T');
+      const date = datetimeParts[0]; // Extract date part
+      const time = datetimeParts[1].slice(0, 5); // Extract time part (HH:mm)
+
+      return { date, time };
+    }
+
+    const departureDatetimeInfo = formatDatetime('<%= detail.departureAirport.time %>');
+    const arrivalDatetimeInfo = formatDatetime('<%= detail.arrivalAirport.time %>')
+
+    // Function to update elements with date and time
+    function updateElements() {
+      // Update elements for departure time
+      const departureTimeElements = document.querySelectorAll('.departure-time');
+      departureTimeElements.forEach((element) => {
+        element.innerHTML = `
+          <span class="time">
+            ${departureDatetimeInfo.time}
+          </span>
+        `;
+      });
+
+      // Update elements for arrival time
+      const arrivalTimeElements = document.querySelectorAll('.arrival-time');
+      arrivalTimeElements.forEach((element) => {
+        element.innerHTML = `
+          <span class="time">
+            ${arrivalDatetimeInfo.time}
+          </span>
+        `;
+      });
+
+      // Update elements for departure date and time
+      const departureDetailElements = document.querySelectorAll('.departure-detail');
+      departureDetailElements.forEach((element) => {
+        element.innerHTML = `
+          <span class="date ThemeColor8">
+            ${departureDatetimeInfo.date}
+          </span>
+          <span class="time f-bold">
+            ${departureDatetimeInfo.time}
+          </span>
+        `;
+      });
+
+      // Update elements for arrival date and time
+      const arrivalDetailElements = document.querySelectorAll('.arrival-detail');
+      arrivalDetailElements.forEach((element) => {
+        element.innerHTML = `
+          <span class="date ThemeColor12">
+            ${arrivalDatetimeInfo.date}
+          </span>
+          <span class="time f-bold">
+            ${arrivalDatetimeInfo.time}
+          </span>
+        `;
+      });
+    }
+
+    // Call the updateElements function
+    updateElements();
+
+
+    document.addEventListener("DOMContentLoaded", () => {
+        const confirmButton = document.getElementById('confirm-booking');
+        confirmButton.addEventListener("click", async () => {
+            detail = JSON.parse(confirmButton.getAttribute('data-detail'));
+            const BookDetails = {
+                flight: detail.flight_code,
+                depart : {
+                    city: detail.departureAirport.city,
+                    code: detail.departureAirport.code,
+                    airport: detail.departureAirport.label,
+                    time: detail.departureAirport.time
+                },
+                arrive : {
+                    city: detail.arrivalAirport.city,
+                    code: detail.arrivalAirport.code,
+                    airport: detail.arrivalAirport.label,
+                    time: detail.arrivalAirport.time
+                },
+                duration: detail.duration.text,
+                price: detail.totals.total,
+                username: username
+            };
+            
+            //console.log(user);
+
+            try {
+                const response = await fetch('/confirm-booking', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(BookDetails), 
+                    //user: JSON.stringify(username)
+                })
+
+                if (response.ok) {
+                    //window.location.href = 'response';
+                    alert('Confirmed booking');
+                    const bookingInfo = {
+                        flight: detail.flight_code,
+                        depart: {
+                            city: detail.departureAirport.city,
+                            code: detail.departureAirport.code,
+                            airport: detail.departureAirport.label,
+                            time: detail.departureAirport.time,
+                        },
+                        arrive: {
+                            city: detail.arrivalAirport.city,
+                            code: detail.arrivalAirport.code,
+                            airport: detail.arrivalAirport.label,
+                            time: detail.arrivalAirport.time,
+                        },
+                        duration: detail.duration.text,
+                        price: detail.totals.total,
+                    };
+
+                    const queryParams = new URLSearchParams({user: username,
+                            bookingDetails: JSON.stringify(bookingInfo),});
+
+                    // Redirect to /tic with query parameters
+                    window.location.href = '/tic?' + queryParams.toString();
+                } else {
+                    alert('Failed booking')
+                }
+            }
+            catch (error) {
+                console.error('Error:', error);
+            }
+        })
+    })
+  </script>
+
+
+<div>
+    <input type="hidden" name="username" value="<%= username.user %>">
+    
+</div>
+<script>
+    
+</script>
+        
+
+</body>
+</html>

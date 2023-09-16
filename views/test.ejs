@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="./css/book.css">
+    <link rel="icon" href="../public/image/favicon.ico">
+  <!-- Head content -->
+</head>
+<body>
+  <div class="tab-content" id="hotel-content">
+    <!-- Hotel content goes here -->
+    <div class="search-panel">
+        <h1>Hotel Search</h1>
+        <form id="search-form">
+            <label for="city">City</label>
+            <input type="text" name="city" id="city" placeholder="Enter City">
+
+            <label for="country">Country</label>
+            <input type="text" name="country" id="country" placeholder="enter country">
+
+            <button type="submit">Search Hotel</button>
+        </form>
+    </div>
+    <div class="container">
+        <h1>Search Results</h1>
+        <table id="search">
+            <thead>
+              <tr>
+                <th>Hotel Name</th>
+                <th>Departure Airport</th>
+                <th>Departure Time</th>
+                <th>Arrival Airport</th>
+                <th>Arrival Time</th>
+                <th>Duration</th>
+                <th>Price</th>
+              </tr>
+            </thead>
+            <tbody id="search-results-table">
+              <!-- Search results will be populated here -->
+            </tbody>
+          </table>
+        </div>
+
+    
+    <div id="includedContent"></div>
+  </div>
+
+  <script src="script2.js"></script>
+</body>
+</html>

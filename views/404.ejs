@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Fira+Mono:400');
+        body {
+            color: #fff;
+            background-color: #1a1a1a;
+            font-family: 'Fira Mono', monospace;
+            font-size: 16px;
+            line-height: 1.5em;
+        }
+        .utility-page-wrap {
+            width: 100vw;
+            height: 100vh;
+            max-height: 100%;
+            max-width: 100%;
+            grid-row-gap: 56px;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            display: flex;
+        }
+        .text-button {
+            color: #fff;
+            padding: 4px 8px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .w-inline-block {
+            max-width: 100%;
+            display: inline-block;
+        }
+        .button-text.large {
+            z-index: 2;
+            font-size: 10vh;
+            position: relative;
+            padding-bottom: 16vh;
+        }
+        .button-text.large:hover{
+            color: #e2ec21;
+        }
+
+        .button-text {
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 1.5em;
+        }
+        h2 {
+            margin-top: 20px;
+            font-size: 32px;
+            line-height: 36px;
+        }
+        a {
+            color: #fff;
+            font-weight: 700;
+            text-decoration: none;
+            transition: color .4s;
+        }
+
+        a {
+            background-color: rgba(0, 0, 0, 0);
+        }
+        .utility-page-content.not-found {
+            grid-row-gap: 0px;
+            padding-top: 13vh;
+        }
+
+        .utility-page-content {
+            width: 260px;
+            grid-row-gap: 56px;
+            text-align: center;
+            flex-direction: column;
+            display: flex;
+        }
+        .code {
+            font-size: 400px;
+            font-family: 'Fira Mono', monospace;
+            animation: glitch 1s linear infinite;
+            z-index: -2;
+        }
+
+        @keyframes glitch{
+            2%,64%{
+            transform: translate(2px,0) skew(0deg);
+        }
+        4%,60%{
+            transform: translate(-2px,0) skew(0deg);
+        }
+        62%{
+            transform: translate(0,0) skew(5deg); 
+        }
+        }
+
+        .code :before,
+        .code :after{
+            content: attr(title);
+            position: absolute;
+            left: 0;
+        }
+
+        .code :before{
+            animation: glitchTop 1s linear infinite;
+            clip-path: polygon(0 0, 100% 0, 100% 33%, 0 33%);
+            -webkit-clip-path: polygon(0 0, 100% 0, 100% 33%, 0 33%);
+        }
+
+        @keyframes glitchTop{
+        2%,64%{
+            transform: translate(2px,-2px);
+        }
+        4%,60%{
+            transform: translate(-2px,2px);
+        }
+        62%{
+            transform: translate(13px,-1px) skew(-13deg); 
+        }
+        }
+
+        .code :after{
+            animation: glitchBotom 1.5s linear infinite;
+            clip-path: polygon(0 67%, 100% 67%, 100% 100%, 0 100%);
+            -webkit-clip-path: polygon(0 67%, 100% 67%, 100% 100%, 0 100%);
+        }
+
+        @keyframes glitchBotom{
+        2%,64%{
+            transform: translate(-2px,0);
+        }
+        4%,60%{
+            transform: translate(-2px,0);
+        }
+        62%{
+            transform: translate(-22px,5px) skew(21deg); 
+        }
+        }
+    </style>
+</head>
+<body>
+    <div class="utility-page-wrap">
+        <a href="/" class="text-button w-inline-block">
+            <div class="button-text large">
+                Back to Homepage
+            </div>
+        </a>
+        <div title="404" class="code">404</div>
+        <div class="utility-page-content not-found">
+            <h2>
+                Page Not Found
+            </h2>
+            <div>
+                The page you are looking for doesn't exist or has been moved
+            </div>
+        </div>
+    </div>
+</body>
+</html>

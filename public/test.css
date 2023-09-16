@@ -1,0 +1,21 @@
+/* styles.css */
+.tabs {
+    display: flex;
+  }
+  
+  .tab {
+    padding: 10px 20px;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    background-color: #f0f0f0;
+    margin-right: 10px;
+  }
+  
+  .tab-content {
+    display: none;
+  }
+  
+  #hotel-content {
+    display: block; /* Show the flight content by default */
+  }
+  
